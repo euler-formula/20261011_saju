@@ -24,5 +24,5 @@ export function buildInterpretationPrompt(input: SajuRequest, result: SajuSummar
 - 한계: ${result.limitations?.join(" / ") || "없음"}
 
 [요청]
-${input.fortuneType === "yearly" ? `${input.targetYear}년의 흐름을 중심으로` : "종합 성향을 중심으로"} 다음 6개 소제목으로 답하세요: 입력 및 한계, 사주 요약, 오행의 균형, ${input.fortuneType === "yearly" ? "올해의 흐름" : "핵심 성향"}, 실천 조언, 참고 안내. 모바일에서 읽기 좋은 짧은 문단을 사용하세요.`;
+${input.fortuneType === "yearly" ? `${input.targetYear}년의 흐름을 중심으로` : "종합 성향을 중심으로"} 다음 6개 소제목으로 답하세요: 입력 및 한계, 사주 요약, 오행의 균형, ${input.fortuneType === "yearly" ? "올해의 흐름" : "핵심 성향"}, 실천 조언, 참고 안내. 여섯 단계를 모두 작성하고, 문장 중간이 아니라 완결된 문장으로 답변을 끝내세요. 모바일에서 읽기 좋은 짧은 문단을 사용하세요.`;
 }

@@ -9,7 +9,7 @@ export async function interpretWithGemini(prompt: string) {
     let lastError: unknown;
     for (const name of candidates) {
       try {
-        const model = client.getGenerativeModel({ model: name, generationConfig: { temperature: 0.4, maxOutputTokens: 1200 } });
+        const model = client.getGenerativeModel({ model: name, generationConfig: { temperature: 0.4, maxOutputTokens: 2048 } });
         const response = await model.generateContent(prompt);
         return { text: response.response.text(), generatedWithAi: true };
       } catch (error) {
