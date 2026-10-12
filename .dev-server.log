@@ -50,3 +50,27 @@
  GET / 200 in 201ms
  GET / 200 in 268ms
  GET / 200 in 137ms
+ ○ Compiling /api/saju ...
+ POST /api/saju 200 in 3887ms
+ GET / 200 in 343ms
+ GET / 200 in 119ms
+ POST /api/saju 200 in 6394ms
+ POST /api/saju 200 in 3385ms
+ ✓ Compiled /api/saju in 692ms (542 modules)
+ GET / 200 in 575ms
+ GET / 200 in 109ms
+ ✓ Compiled /api/saju in 208ms (353 modules)
+ POST /api/saju 200 in 3357ms
+ ✓ Compiled in 722ms (542 modules)
+ GET / 200 in 506ms
+ ✓ Compiled in 458ms (542 modules)
+ ✓ Compiled in 274ms (542 modules)
+ GET / 200 in 504ms
+ ✓ Compiled in 473ms (542 modules)
+ GET / 200 in 365ms
+ ✓ Compiled in 446ms (542 modules)
+ GET / 200 in 122ms
+ POST /api/saju 422 in 511ms
+ ○ Compiling /api/saju ...
+ GET / 200 in 319ms
+[?25h

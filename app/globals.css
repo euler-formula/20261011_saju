@@ -9,6 +9,22 @@
 /* Keep all highlighted copy upright; colour and weight carry the emphasis. */
 em, i { font-style: normal; }
 .highlight { color: var(--lav); font-style: normal; }
+.accuracy-tip-wrap { position:relative; display:inline-block; }
+.accuracy-tip-trigger { display:inline; border:0; padding:0; background:none; font:inherit; line-height:inherit; cursor:help; }
+.accuracy-tip-trigger:focus-visible { border-radius:3px; outline:2px solid var(--lav); outline-offset:4px; }
+.accuracy-tip { position:absolute; z-index:20; top:0; left:calc(100% + 14px); width:min(320px,calc(100vw - 48px)); padding:14px 16px; border:1px solid #e5dfec; border-radius:12px; background:#fff; box-shadow:0 12px 28px rgba(41,43,53,.16); color:var(--ink); font:500 13px/1.75 "Noto Sans KR",sans-serif; letter-spacing:0; text-align:left; opacity:0; visibility:hidden; transform:translateY(4px); transition:opacity .16s ease,transform .16s ease,visibility .16s; }
+.accuracy-tip-wrap:hover .accuracy-tip,.accuracy-tip-wrap:focus-within .accuracy-tip,.accuracy-tip-trigger[aria-expanded="true"]+.accuracy-tip { opacity:1; visibility:visible; transform:translateY(0); }
+@media (max-width:760px) {
+  .accuracy-tip-wrap { display:block; width:min(310px,100%); }
+  .accuracy-tip { display:none; position:static; width:100%; margin-top:10px; transform:none; }
+  .accuracy-tip-wrap:hover .accuracy-tip,.accuracy-tip-wrap:focus-within .accuracy-tip,.accuracy-tip-trigger[aria-expanded="true"]+.accuracy-tip { display:block; }
+}
+.hero-copy { position:relative; z-index:30; }
+.accuracy-tip-wrap { z-index:100; }
+.accuracy-tip { z-index:101; }
+@media (max-width:760px) {
+  .accuracy-tip { display:block; position:absolute; top:100%; left:0; margin-top:10px; }
+}
  .limitations { margin-top:22px; padding:15px; border-radius:10px; background:#faf8ee; color:#6d6242; font-size:12px; line-height:1.7 }.limitations p { margin:0 0 5px; font-weight:700 }.limitations span { display:block }
 /* A soft bridge from the landing area into the deep-navy reading form. */
 .steps-section { background:linear-gradient(180deg, #faf7f1 0%, #f3f0fb 68%, #d8d5e7 100%); }
@@ -19,7 +35,6 @@ em, i { font-style: normal; }
 
 /* Mobile layouts adapt to both narrow and unusually short/tall viewports. */
 @media (max-width:760px) {
-  body { overflow-x:hidden; }
   .hero { padding-block:clamp(36px, 8svh, 58px) clamp(42px, 9svh, 76px); }
   .hero-orbit { min-height:clamp(270px, 42svh, 340px); }
   .section { padding-block:clamp(58px, 10svh, 82px); }
@@ -51,7 +66,7 @@ em, i { font-style: normal; }
 .steps { position:relative; grid-template-columns:1fr 1fr; gap:96px; }.steps::before { content:""; position:absolute; top:28px; bottom:28px; left:50%; width:1px; background:rgba(82,90,107,.2); }.steps>div,.steps>ol { position:relative; z-index:1; }.steps>div { text-align:center; }.moon { z-index:4; }.float-card { z-index:2; }
 .analyze-intro { transform:translateX(24px); }
 @media (max-width:760px) { .steps::before { top:auto; bottom:auto; left:0; right:0; width:auto; height:1px; margin-top:calc(clamp(58px, 10svh, 82px) + 128px); background:rgba(82,90,107,.22); }.steps ol { padding-top:24px; }.moon { z-index:4; }.card-one,.card-two { z-index:2; } }
-@media (max-width:760px) { .steps::before { display:none; }.steps>div { align-self:auto; padding-bottom:24px; border-bottom:1px solid rgba(82,90,107,.22); }.steps ol { padding-top:0; } }
+@media (max-width:760px) and (orientation:portrait) { .steps::before { display:none; }.steps>div { align-self:auto; padding-bottom:24px; border-bottom:0; }.steps ol { padding-top:0; } }
 @media (max-width:760px) { .analyze-intro { transform:none; } }
 
 /* The core-energy label is an independent speech bubble, not part of the orbit. */
@@ -59,12 +74,24 @@ em, i { font-style: normal; }
 @media (max-width:760px) { .moon { top:12px; left:16px; width:160px; height:96px; padding:16px 18px; }.moon b { font-size:20px; }.moon span:first-child { right:18px; top:16px; }.moon span:last-child { right:18px; bottom:14px; } }
 
 /* Restore the central energy orb; use the core-energy card as the speech bubble. */
-.moon { top:105px; left:calc(50% - 98px); width:196px; height:196px; border-radius:50%; padding:31px 22px; display:flex; justify-content:space-between; background:linear-gradient(145deg,#fff,#ede9ff); box-shadow:0 26px 45px #7d6ab92b, inset 0 0 0 8px #ffffffb8; }.moon::after { content:none; }.moon b { position:static; display:block; align-self:center; text-align:center; color:var(--navy); font-size:24px; line-height:1.1; }.moon span { position:static; color:var(--gold); font-size:18px; }.card-one { border-radius:17px; }.card-one::after { content:""; position:absolute; left:25px; bottom:-9px; width:18px; height:18px; background:#fffc; transform:rotate(45deg); border-radius:0 0 3px 0; border-right:1px solid #fff; border-bottom:1px solid #fff; }
+.moon { top:105px; left:calc(50% - 98px); width:196px; height:196px; border-radius:50%; padding:31px 22px; display:flex; justify-content:space-between; background:linear-gradient(145deg,#fff,#ede9ff); box-shadow:0 26px 45px #7d6ab92b, inset 0 0 0 8px #ffffffb8; }.moon::after { content:none; }.moon b { position:static; display:block; align-self:center; margin:auto; text-align:center; color:var(--navy); font-size:24px; line-height:1.1; }.moon span { position:static; color:var(--gold); font-size:18px; }.card-one { border-radius:17px; }.card-one::after { content:""; position:absolute; left:25px; bottom:-9px; width:18px; height:18px; background:#fffc; transform:rotate(45deg); border-radius:0 0 3px 0; border-right:1px solid #fff; border-bottom:1px solid #fff; }
 @media (max-width:760px) { .moon { top:66px; left:calc(50% - 98px); width:196px; height:196px; padding:31px 22px; }.moon b { font-size:24px; }.moon span { font-size:18px; }.card-one::after { left:20px; } }
 
 .card-one { top:-36px; right:-12px; }
 .card-one::after { content:none; }
 @media (max-width:760px) { .card-one { top:-36px; right:-8px; } }
+.card-one strong { margin:6px 0 10px; font-size:13px; letter-spacing:.02em; }
+.five-element-key { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:4px; }
+.five-element-key span { display:flex; flex-direction:column; align-items:center; gap:4px; color:var(--muted); font-size:10px; line-height:1; }
+.five-element-key i { width:8px; height:8px; border-radius:50%; background:#b9903f; }
+.five-element-key .wood i { background:#62a873; }.five-element-key .fire i { background:#d96658; }.five-element-key .earth i { background:#b9903f; }.five-element-key .metal i { background:#9399a6; }.five-element-key .water i { background:#5c82bd; }
+.hero-orbit { --orbit-symbol-offset:clamp(112px,33%,142px); background:radial-gradient(circle at 50% 50%,#e8e1ff 0 13%,transparent 13.4%),radial-gradient(circle at 50% 50%,#f2efff 0 46%,transparent 46.5%); }
+.moon { top:calc(50% - 98px); }
+.orbit-elements { position:absolute; inset:0; z-index:3; pointer-events:none; }
+.orbit-elements span { position:absolute; width:28px; height:28px; display:grid; place-items:center; transform:translate(-50%,-50%); border:1px solid currentColor; border-radius:50%; background:rgba(255,255,255,.86); box-shadow:0 5px 13px rgba(71,58,107,.12); font-family:"DM Serif Display","Noto Sans KR",serif; font-size:14px; line-height:1; }
+.orbit-elements .wood { top:17%; left:44%; color:#4d8b5a; }.orbit-elements .fire { top:39%; left:85%; color:#cf6657; }.orbit-elements .earth { top:78%; left:70%; color:#a77d2f; }.orbit-elements .metal { top:77%; left:35%; color:#707789; }.orbit-elements .water { top:44%; left:15%; color:#4d74b3; }
+.card-one { text-align:center; }
+@media (max-width:760px) { .moon { top:calc(50% - 98px); }.orbit-elements .wood { top:10%; left:22%; }.orbit-elements .fire { top:36%; left:91%; }.orbit-elements .earth { top:94%; left:67%; }.orbit-elements .metal { top:92%; left:31%; }.orbit-elements .water { top:53%; left:7%; } }
 .date-selects { display:grid; grid-template-columns:1.35fr 1fr 1fr; gap:7px; margin-top:6px; }.date-selects select,.traditional-time { width:100%; min-height:44px; border:1px solid #e4e2e7; border-radius:10px; background:#fbfafc; color:var(--ink); padding:0 10px; font-size:14px; }.traditional-time { display:block; margin-top:6px; }
 .analyze-intro .time-guidance { margin-top:48px; line-height:1.9; }
 @media (max-width:760px) { .analyze-intro .time-guidance { margin-top:34px; } }
@@ -110,6 +137,28 @@ em, i { font-style: normal; }
 .pillar-badges u.wood { background:#edf7ef; box-shadow:inset 0 0 0 1px #cce3d1; }.pillar-badges u.fire { background:#fff0ed; box-shadow:inset 0 0 0 1px #efccc5; }.pillar-badges u.earth { background:#faf4e5; box-shadow:inset 0 0 0 1px #e6d8b5; }.pillar-badges u.metal { background:#f0f2f5; box-shadow:inset 0 0 0 1px #d8dce3; }.pillar-badges u.water { background:#edf3fb; box-shadow:inset 0 0 0 1px #ccdaed; }
 .core-energy-visual i:nth-child(1) b,.mini-bars i:nth-child(1) { background:#62a873; }.core-energy-visual i:nth-child(2) b,.mini-bars i:nth-child(2) { background:#d96658; }.core-energy-visual i:nth-child(3) b,.mini-bars i:nth-child(3) { background:#b9903f; }.core-energy-visual i:nth-child(4) b,.mini-bars i:nth-child(4) { background:#9399a6; }.core-energy-visual i:nth-child(5) b,.mini-bars i:nth-child(5) { background:#5c82bd; }
 .element-chip.wood { color:#3f8752; background:#edf7ef; }.element-chip.fire { color:#c95347; background:#fff0ed; }.element-chip.earth { color:#9b7428; background:#faf4e5; }.element-chip.metal { color:#686f7e; background:#f0f2f5; }.element-chip.water { color:#406cae; background:#edf3fb; }
+
+/* Keep the full-bleed result backdrop inside the document width. */
+.result-section.shell { width:100%; margin-inline:0; padding-inline:max(20px,calc((100% - 1200px)/2)); }
+.result-section::before { inset:0; box-shadow:none; clip-path:none; }
+
+.topic-row { flex-wrap:wrap; }
+.topic-row button:last-child { display:none; }
+
+/* These labels describe relative occurrences, not a prescription to supplement an element. */
+.energy-summary>span { font-size:0; }
+.energy-summary>span::after { content:"많이 나타난 오행"; font-size:11px; }
+.energy-summary.weak>span::after { content:"적게 나타난 오행"; }
+.element-count-note { margin:10px 0 0; color:var(--muted); font-size:10px; line-height:1.6; }
+
+/* Keep the three-step copy readable before the narrow mobile breakpoint. */
+@media (max-width:900px) {
+  .steps { grid-template-columns:1fr; gap:35px; }
+  .steps::before { display:none; }
+  .steps>div { align-self:auto; padding-bottom:24px; border-bottom:1px solid rgba(82,90,107,.22); }
+  .steps ol { padding-top:0; }
+}
+
 
 /* Keep the complete consultation reading as clean and legible as pages two and three. */
 .result-section .interpretation,

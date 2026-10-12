@@ -7,7 +7,9 @@ export function calculateSaju(input: SajuRequest): SajuSummary {
   const { analyzeSaju } = require("saju-fortune") as { analyzeSaju: (birth: object, options: object) => SajuSummary };
   const result = analyzeSaju(
     { birthDate: input.birthDate, birthTime: input.birthTime, calendar: input.calendar, isLeapMonth: input.isLeapMonth, gender: input.gender },
-    { analysisType: "fortune", fortuneType: input.fortuneType === "yearly" ? "general" : "general", targetYear: input.targetYear },
+    // This adapter only exposes the engine's general reading. The package accepts
+    // targetYear as metadata, but does not use it to calculate a yearly reading.
+    { analysisType: "fortune", fortuneType: "general" },
   );
   return result;
 }
