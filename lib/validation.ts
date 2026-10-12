@@ -13,5 +13,5 @@ export function validateRequest(value: unknown): { data?: SajuRequest; error?: s
   if (calendar !== "solar" && calendar !== "lunar") return { error: "양력 또는 음력을 선택해 주세요." };
   if (gender !== "male" && gender !== "female") return { error: "성별을 선택해 주세요." };
   if (!Number.isInteger(targetYear) || targetYear < 1900 || targetYear > 2100) return { error: "대상 연도를 확인해 주세요." };
-  return { data: { birthDate, birthTime: birthTime || undefined, calendar, isLeapMonth: Boolean(input.isLeapMonth), gender, birthCity: String(input.birthCity ?? "") || undefined, fortuneType: input.fortuneType === "yearly" ? "yearly" : "general", targetYear } };
+  return { data: { birthDate, birthTime: birthTime || undefined, calendar, isLeapMonth: Boolean(input.isLeapMonth), gender, fortuneType: input.fortuneType === "yearly" ? "yearly" : "general", targetYear } };
 }

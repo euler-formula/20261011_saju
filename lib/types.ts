@@ -8,12 +8,11 @@ export type SajuRequest = {
   calendar: CalendarType;
   isLeapMonth: boolean;
   gender: Gender;
-  birthCity?: string;
   fortuneType: FortuneType;
   targetYear: number;
 };
 
-export type Pillar = { label: string; hanja?: string; stem?: string; branch?: string };
+export type Pillar = { label: string; hanja?: string; stem?: string; branch?: string; stemElement?: string; branchElement?: string; yinYang?: string };
 export type SajuSummary = {
   pillars: { year: Pillar; month: Pillar; day: Pillar; hour: Pillar | null };
   dayMaster?: { stem?: string; elementKo?: string; yinYang?: string; strength?: string };

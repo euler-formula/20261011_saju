@@ -6,7 +6,7 @@ export function calculateSaju(input: SajuRequest): SajuSummary {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { analyzeSaju } = require("saju-fortune") as { analyzeSaju: (birth: object, options: object) => SajuSummary };
   const result = analyzeSaju(
-    { birthDate: input.birthDate, birthTime: input.birthTime, calendar: input.calendar, isLeapMonth: input.isLeapMonth, gender: input.gender, birthCity: input.birthCity },
+    { birthDate: input.birthDate, birthTime: input.birthTime, calendar: input.calendar, isLeapMonth: input.isLeapMonth, gender: input.gender },
     { analysisType: "fortune", fortuneType: input.fortuneType === "yearly" ? "general" : "general", targetYear: input.targetYear },
   );
   return result;

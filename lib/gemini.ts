@@ -5,12 +5,12 @@ export async function interpretWithGemini(prompt: string) {
   if (!key) return { text: "AI 해석을 생성하려면 서버 환경변수 GEMINI_API_KEY를 설정해 주세요. 계산 결과는 아래에서 확인할 수 있습니다.", generatedWithAi: false };
   try {
     const client = new GoogleGenerativeAI(key);
-    const candidates = ["gemini-3.8-flash", "gemini-flash-lite-latest", "gemini-flash-latest"];
+    const candidates = ["gemini-flash-lite-latest", "gemini-flash-latest"];
     let lastError: unknown;
     for (const name of candidates) {
       try {
         const model = client.getGenerativeModel({ model: name, generationConfig: { temperature: 0.4, maxOutputTokens: 2048 } });
-        const response = await model.generateContent(prompt);
+        const response = await model.generateContent(prompt, { timeout: 12000 });
         return { text: response.response.text(), generatedWithAi: true };
       } catch (error) {
         lastError = error;
